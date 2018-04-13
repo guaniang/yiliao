@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<!--<link rel="stylesheet" type="text/css" href="style.min.css"/>-->
+</head>
+<body>
+<div class='container'>
+	
+		<img src="img/yindao.jpg"/>
+	
+	
+	
+	
+	
+	
+	<div class='main'>
+		<div class='home' id="wrapper">
+			<header>
+				<h2 class='index-text'><img src="img/home_1.png"/></h2>
+			</header>
+			
+			
+			
+			
+
+
+		</div>
+		
+		<div class='news'>
+			<header>
+		<h2 class='index-text'><img src="img/home_1.png"/></h2>
+	</header>
+			健康
+		</div>
+		<div class='list'>
+			<ul>
+				<li><a href="#">1111</a></li>
+				<li><a href="#">2222</a></li>
+				<li><a href="#">3333</a></li>
+				<li><a href="#">4444</a></li>
+				<li><a href="#">55555</a></li>
+			</ul>
+		</div>
+		
+		
+		
+		
+		<div class='me'>
+			说的是水水长沙市
+		</div>
+
+	</div>
+	
+	
+	
+	
+	<footer>
+		<nav>
+			<ul>
+				<li>
+					<a href="#home">首页</a>
+				</li>
+				<li>
+					<a href="#news">健康</a>
+				</li>
+				<li>
+					<a href="#list">消息</a>
+				</li>
+				<li>
+					<a href="#me">我</a>
+				</li>
+			</ul>
+		</nav>
+	</footer>
+</div>
+
+<script src='zepto.js'></script>
+<script src='event.js'></script>
+<script src='touch.js'></script>
+<script src='iscroll.js'></script>
+<script>
+
+function fn()
+{
+	setTimeout(function(){
+		$(".container > img").hide()},2000);
+}
+fn()
+
+$(function(){
+	let local = localStorage;
+	function me(){
+			let meStr = local.getItem("f");
+			let meBrr = JSON.parse(meStr);
+			let meS = "";
+			meBrr.forEach((val,idx)=>{
+				meS+=val;
+			})
+			$(".me").html(meS);
+	}
+	me();
+
+
+//	new IScroll('#wrapper', {
+//	    mouseWheel: true
+//	});
+
+	
+	$("footer ul").on("tap",'li',function(){
+		var is = $(this).attr("href");
+		if(is=="#news"){
+			$(".fav").show();
+			$(".index-text").text("新闻")
+			$(".return").hide();
+		}else if(is=="#home"){
+			$(".index-text").text("首页")
+			$(".fav").hide();
+			$(".return").hide();
+		}
+
+
+
+		var idx = $(this).index();
+
+		$(".main > div").eq(idx).css({
+			transform:"translate3d(0,0,0)",
+			transition:"all 0.3s"
+		}).siblings().css({
+			transform:"translate3d(100%,0,0)",
+			transition:"all 0.3s"
+		})		
+
+
+
+	})
+
+})
+</script>
+	
+</body>
+</html>
